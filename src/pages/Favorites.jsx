@@ -4,26 +4,27 @@ import BookList from "../components/BookList";
 function Favorites() {
   const [favorites, setFavorites] = useState([]);
 
-  // Load favorites from localStorage
   useEffect(() => {
-    const saved = JSON.parse(localStorage.getItem("favorites") || "[]");
-    setFavorites(saved);
+    setFavorites(JSON.parse(localStorage.getItem("favorites") || "[]"));
   }, []);
 
-  // Remove book from favorites
-  const removeFavorite = (book) => {
+  const toggleFavorite = (book) => {
     const updated = favorites.filter((f) => f.key !== book.key);
     setFavorites(updated);
     localStorage.setItem("favorites", JSON.stringify(updated));
   };
 
   return (
-    <div className="container py-4">
-      <h1 className="text-center text-primary mb-4">⭐ My Favorites</h1>
+    <div className="container">
+      <h2>My Favorites</h2>
       {favorites.length === 0 ? (
-        <p className="text-center text-muted">You have no favorite books yet.</p>
+        <p>No favorites yet</p>
       ) : (
-        <BookList books={favorites} toggleFavorite={removeFavorite} favorites={favorites} />
+        <BookList
+          books={favorites}
+          toggleFavorite={toggleFavorite}
+          favorites={favorites}
+        />
       )}
     </div>
   );
