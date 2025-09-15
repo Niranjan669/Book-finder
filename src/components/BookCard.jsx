@@ -4,25 +4,33 @@ function BookCard({ book, toggleFavorite, favorites }) {
     ? `https://covers.openlibrary.org/b/id/${coverId}-M.jpg`
     : "https://via.placeholder.com/120x180?text=No+Cover";
 
-  const isFavorite = favorites?.some(f => f.key === book.key);
+  // Check if book is in favorites
+  const isFavorite = favorites?.some((f) => f.key === book.key);
 
   return (
-    <div
-      className="card text-center shadow-sm p-2 m-2"
-      style={{ width: "140px", flexShrink: 0 }}
-    >
+    <div className="card text-center shadow-sm p-2 m-2" style={{ width: "140px" }}>
+      {/* Book cover */}
       <img
         src={coverUrl}
         alt={book.title}
-        style={{ width: "120px", height: "180px", objectFit: "cover", margin: "0 auto" }}
+        style={{
+          width: "120px",
+          height: "180px",
+          objectFit: "cover",
+          margin: "0 auto",
+        }}
       />
+      {/* Title */}
       <h6 className="mt-2">{book.title}</h6>
+      {/* Author */}
       <p className="mb-1" style={{ fontSize: "0.75rem" }}>
         Author: {book.author_name ? book.author_name.join(", ") : "Unknown"}
       </p>
+      {/* Published year */}
       <p className="mb-2" style={{ fontSize: "0.7rem", color: "#555" }}>
         Published: {book.first_publish_year || "N/A"}
       </p>
+      {/* Favorite button */}
       {toggleFavorite && (
         <button
           className={`btn btn-sm ${isFavorite ? "btn-danger" : "btn-outline-primary"}`}

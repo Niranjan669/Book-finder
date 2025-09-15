@@ -2,9 +2,13 @@ import { Link } from "react-router-dom";
 
 function Header() {
   return (
+    // Bootstrap navbar for navigation
     <nav className="navbar navbar-expand-lg navbar-dark bg-primary mb-4">
       <div className="container">
+        {/* Brand Logo/Title */}
         <Link className="navbar-brand" to="/">Book Finder</Link>
+
+        {/* Toggler button for mobile view */}
         <button
           className="navbar-toggler"
           type="button"
@@ -16,6 +20,8 @@ function Header() {
         >
           <span className="navbar-toggler-icon"></span>
         </button>
+
+        {/* Navigation links */}
         <div className="collapse navbar-collapse" id="navbarNav">
           <ul className="navbar-nav ms-auto">
             <li className="nav-item">
@@ -25,8 +31,8 @@ function Header() {
               <Link className="nav-link" to="/search">Search</Link>
             </li>
             <li className="nav-item">
-            <Link className="nav-link" to="/favorites">Favorites</Link>
-          </li>
+              <Link className="nav-link" to="/favorites">Favorites</Link>
+            </li>
             <li className="nav-item">
               <Link className="nav-link" to="/about">About</Link>
             </li>

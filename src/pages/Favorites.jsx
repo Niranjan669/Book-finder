@@ -4,18 +4,17 @@ import BookList from "../components/BookList";
 function Favorites() {
   const [favorites, setFavorites] = useState([]);
 
-  // Load favorites from localStorage on mount
+  // Load favorites from localStorage
   useEffect(() => {
     const saved = JSON.parse(localStorage.getItem("favorites") || "[]");
     setFavorites(saved);
   }, []);
 
+  // Remove book from favorites
   const removeFavorite = (book) => {
-    setFavorites((prev) => {
-      const updated = prev.filter(f => f.key !== book.key);
-      localStorage.setItem("favorites", JSON.stringify(updated));
-      return updated;
-    });
+    const updated = favorites.filter((f) => f.key !== book.key);
+    setFavorites(updated);
+    localStorage.setItem("favorites", JSON.stringify(updated));
   };
 
   return (
